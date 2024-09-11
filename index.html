@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente de Consultoría con IA</title>
+    <link rel="stylesheet" href="C:\Users\Elena Orenga\Desktop\Asistente Consultoria IA\style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 style="text-align: center;">Asistente de Consultoría con IA</h1>
+        </div>
+    </header>
+    <main>
+        <form id="questionForm">
+            <div class="question-block">
+                <label for="question1">¿Cuál es el nombre de la empresa?</label>
+                <textarea id="question1" name="question1" required></textarea>
+            </div>
+            
+            <br>
+            
+            <div class="question-block">
+                <label for="question2">¿A que sector pertenece?</label>
+                <textarea id="question2" name="question2" required></textarea>
+            </div>
+            
+            <br>
+            
+            <div class="question-block">
+                <label for="question3">¿Cuántos empleados tiene la empresa?</label>
+                <select id="question3" name="question3" required>
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="1-10">1-10</option>
+                    <option value="10-50">10-50</option>
+                    <option value="50-200">50-200</option>
+                    <option value="200-500">200-500</option>
+                    <option value="500-1000">500-1000</option>
+                    <option value="+1000">+1000</option>
+                </select>
+            </div>
+            
+            <br>
+            
+            <div class="question-block">
+                <label for="question4">¿Cuales son los principales productos/servicios que vende la empresa?</label>
+                <textarea id="question4" name="question4" required></textarea>
+            </div>
+            
+            <br>
+            
+            <div class="question-block">
+                <label for="question5">¿Que herramientas utiliza la empresa para el desarrollo de sus productos/servicios?</label>
+                <textarea id="question5" name="question5" required></textarea>
+            </div>
+            
+            <br>
+            
+            <div class="question-block">
+                <label for="question6">Del 1 al 5 ¿Cuál es el nivel de digitalización de la empresa?</label>
+                <textarea id="question6" name="question6" required></textarea>
+            </div>
+            
+            <br>
+            
+            <div class="question-block">
+                <label for="question7">¿Quiénes considera la empresa como sus principales competidores?</label>
+                <textarea id="question7" name="question7" required></textarea>
+            </div>
+            
+            <br>
+            
+            <div class="question-block">
+                <label for="question8">¿Cuales son los principales canales de venta de la empresa?</label>
+                <textarea id="question8" name="question8" required></textarea>
+            </div>
+            
+            <br>
+            
+            <div class="question-block">
+                <label for="question9">¿Cuál es su margen de beneficio aproximado?</label>
+                <textarea id="question9" name="question9" required></textarea>
+            </div>
+            
+            <br>
+            
+            <div class="question-block">
+                <label for="question10">¿Cuales son las expectativas de crecimiento de la empresa en los próximos 5 años?</label>
+                <textarea id="question10" name="question10" required></textarea>
+            </div>
+            
+            <br>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    <footer>
+        <!-- Footer content -->
+    </footer>
+    <script>
+        document.getElementById('consultoriaForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
+
+            const formData = new FormData(event.target);
+            const data = {};
+            formData.forEach((value, key) => (data[key] = value));
+
+            const response = await fetch('/guardar-respuestas', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert('Respuestas enviadas y guardadas con éxito');
+            } else {
+                alert('Hubo un problema al enviar las respuestas');
+            }
+        });
+    </script>
+</body>
+</html>
